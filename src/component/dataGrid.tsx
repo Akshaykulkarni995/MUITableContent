@@ -9,10 +9,20 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { Typography } from "@mui/material";
+import LinearProgress from '@mui/material/LinearProgress';
+
+const MAX_ROW_LENGTH = 500;
+
+function sleep(duration: number) {
+  return new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, duration);
+  });
+}
 
 export default function TablePage() {
   return (
-   
     <Stack sx = {{m:10}} >
       <Typography variant="h4" align="left">Premium Table</Typography>
       <Typography variant="h6" align="left">Filtering:Column Filtering, Column Swapping, Column Editing</Typography>
@@ -21,9 +31,11 @@ export default function TablePage() {
       <Typography variant="h6" align="left">Pagination:Multiple option</Typography>
       <Typography variant="h6" align="left">Export: CSV,PDF </Typography>
       <DataGridPremium autoHeight
+       experimentalFeatures={{ lazyLoading: true }}
+
         rows={USERS}
         columns={columns}
-        slots={{ toolbar: GridToolbar }}
+        slots={{  loadingOverlay: LinearProgress,toolbar: GridToolbar }}
         slotProps={{
           toolbar: {
             showQuickFilter: true,
@@ -31,11 +43,11 @@ export default function TablePage() {
           },
         }}
         initialState={{
+          pagination: { paginationModel: { pageSize: 5 } },
           pinnedColumns: { left: ["email"], right: ["actions"] },
         }}
         pagination={true}
-        paginationModel={{page:0,pageSize:5}}
-        autoPageSize
+     
       />
     </Stack>
 
