@@ -11,16 +11,6 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Typography } from "@mui/material";
 import LinearProgress from '@mui/material/LinearProgress';
 
-const MAX_ROW_LENGTH = 500;
-
-function sleep(duration: number) {
-  return new Promise<void>((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, duration);
-  });
-}
-
 export default function TablePage() {
   return (
     <Stack sx = {{m:10}} >
@@ -32,7 +22,6 @@ export default function TablePage() {
       <Typography variant="h6" align="left">Export: CSV,PDF </Typography>
       <DataGridPremium autoHeight
        experimentalFeatures={{ lazyLoading: true }}
-
         rows={USERS}
         columns={columns}
         slots={{  loadingOverlay: LinearProgress,toolbar: GridToolbar }}
