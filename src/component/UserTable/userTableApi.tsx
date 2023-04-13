@@ -1,12 +1,9 @@
 import React,{useEffect,useState} from 'react'
 import DataTable from "../DataTable/dataTable"
 import {
-  DataGridPro,
   GridColDef,
-  GridRowsProp,
   GridActionsCellItem,
-  GridCellEditStopParams,
-  GridCellEditStopReasons,
+  
 } from '@mui/x-data-grid-pro';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
