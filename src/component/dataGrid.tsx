@@ -14,7 +14,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 export default function TablePage() {
   return (
     <Stack sx = {{m:10}} >
-      <Typography variant="h4" align="left">Premium Table</Typography>
+      <Typography variant="h4" align="left">Premium Table (Data Grid)</Typography>
       <Typography variant="h6" align="left">Filtering:Column Filtering, Column Swapping, Column Editing</Typography>
       <Typography variant="h6" align="left">Pinning: Column Pinning,Drag & Drop </Typography>
       <Typography variant="h6" align="left">Search : Column search , Global Search</Typography>

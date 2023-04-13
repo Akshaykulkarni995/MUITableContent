@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import ColDatagridpro from "./component/dataGrid"
+import UserTable from "./component/UserTable/userTableApi"
 function App() {
   return (
     <div className="App">
-    <ColDatagridpro/>
+    <UserTable/>
     </div>
   );
 }
