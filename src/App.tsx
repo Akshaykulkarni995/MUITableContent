@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import UserTable from "./component/UserTable/userTableApi"
 import MultiFunTable from "./component/MultiFunctionTable/multiFunTable"
 function App() {
   return (

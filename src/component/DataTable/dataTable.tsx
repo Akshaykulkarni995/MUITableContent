@@ -1,7 +1,6 @@
 import {
     DataGridPro,
-    GridCellEditStopParams,
-    GridCellEditStopReasons, MuiEvent,GridToolbar,DataGridProProps,
+    MuiEvent,GridToolbar,DataGridProProps,
   } from '@mui/x-data-grid-pro';
 
 import React from 'react'
