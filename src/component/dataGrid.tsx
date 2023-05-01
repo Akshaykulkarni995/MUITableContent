@@ -35,8 +35,7 @@ export default function TablePage() {
           pagination: { paginationModel: { pageSize: 5 } },
           pinnedColumns: { left: ["email"], right: ["actions"] },
         }}
-        pagination={true}
-     
+        pagination={true}   
       />
     </Stack>
 

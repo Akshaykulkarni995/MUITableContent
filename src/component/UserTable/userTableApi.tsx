@@ -9,8 +9,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
 const columns: GridColDef[] = [
-  {field:'id',headerName:"User ID",width:150,editable: true,},
+  {field:'id',headerName:"User ID",width:100},
   {field:'title',headerName:"Name",width:150,editable: true,},
+  {field:'title',headerName:"Address",width:150,editable: true,},
+  {field:'title',headerName:"Lab1",width:150,editable: true,},
+  {field:'title',headerName:"Lab 2",width:150,editable: true,},
+  {field:'title',headerName:"Lab 3",width:150,editable: true,},
+  {field:'title',headerName:"Path Lab",width:150,editable: true,},
+  {field:'title',headerName:"Blood Lab",width:150,editable: true,},
+  {field:'title',headerName:"Test Lab",width:150,editable: true,},
+  {field:'title',headerName:"Lab",width:150,editable: true,},
   {field:'body',headerName:"Description",minWidth:150,flex:1,editable: true,},
   {
     field: 'actions',
@@ -28,12 +36,9 @@ const TableStyles = {
   p:2
   
 }
-
-const userTableApi = () => {
-    
+const userTableApi = () => {  
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [users, setUsers] = useState([])
-
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(()=>{
         fetch('https://jsonplaceholder.typicode.com/posts')
@@ -41,7 +46,6 @@ const userTableApi = () => {
         .then((json)=>setUsers(json))
 
     },[])
-
   return (
     <DataTable 
     sx={TableStyles}
