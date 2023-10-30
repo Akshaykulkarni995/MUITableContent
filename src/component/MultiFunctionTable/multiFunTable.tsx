@@ -5,7 +5,6 @@ import {
   GridCsvExportOptions,
   GridCsvGetRowsToExportParams,
   GridPagination,
-  GridToolbar,
   GridToolbarContainer,
   gridFilteredSortedRowIdsSelector,
   gridPageCountSelector,
@@ -13,6 +12,9 @@ import {
   useGridApiContext,
   useGridSelector,
   gridClasses,
+  GridToolbarExport,
+  GridToolbarFilterButton,
+  GridToolbarColumnsButton,
 } from "@mui/x-data-grid-premium";
 import { Button, LinearProgress, TablePaginationProps } from "@mui/material";
 import MuiPagination from "@mui/material/Pagination";
@@ -69,19 +71,23 @@ function CustomToolbar() {
 
   return (
     <GridToolbarContainer>
-      <GridToolbar />
+      <GridToolbarColumnsButton />
+      <GridToolbarFilterButton />
       <Button
         onClick={() =>
           handleExport({ getRowsToExport: getRowsFromCurrentPage })
         }
       >
-        Current page rows
+        Export Current page rows
       </Button>
       <Button
         onClick={() => handleExportRows({ getRowsToExport: getRowsWithGroups })}
       >
-        Rows with groups
+        Export Rows with groups
       </Button>
+      <GridToolbarExport
+        printOptions={{ hideFooter: true, hideToolbar: true }}
+      />
     </GridToolbarContainer>
   );
 }
@@ -134,6 +140,14 @@ const multiFunTable = () => {
         toolbar: CustomToolbar,
         pagination: CustomPagination,
         loadingOverlay: LinearProgress,
+      }}
+      slotProps={{
+        toolbar: {
+          printOptions: {
+            hideFooter: true,
+            hideToolbar: true,
+          },
+        },
       }}
       loading={loading}
       {...data}
