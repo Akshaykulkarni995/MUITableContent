@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
@@ -15,11 +14,6 @@ import {
 import { randomEmail } from "@mui/x-data-grid-generator";
 import { DataGridPremium } from "@mui/x-data-grid-premium";
 import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
   Grid,
   LinearProgress,
 } from "@mui/material";
@@ -29,7 +23,7 @@ import {
 } from "./MultiFunctionTable/multiFunTable";
 
 function DetailPanelContent({ row }: { row: Patient }) {
-  const [open, setOpen] = React.useState(false);
+//   const [open, setOpen] = React.useState(false);
   const apiRef = useGridApiContext();
   const {
     control,
@@ -45,13 +39,13 @@ function DetailPanelContent({ row }: { row: Patient }) {
     apiRef.current.toggleDetailPanel(row.id);
   };
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+//   const handleClickOpen = () => {
+//     setOpen(true);
+//   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+//   const handleClose = () => {
+//     setOpen(false);
+//   };
 
   return (
     <Stack
