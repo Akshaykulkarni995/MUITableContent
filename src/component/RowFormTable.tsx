@@ -54,8 +54,8 @@ function DetailPanelContent({ row }: { row: Patient }) {
       component="form"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Paper sx={{ background: "#ffff8d", m: "auto", width: "90%", p: 1 }}>
-        <Grid container spacing={2}>
+      <Paper sx={{ background: "#ffff8d", m: "auto", width: "90%", p: 2 }}>
+        <Grid container spacing={2} sx={{p:1}}>
           <Grid item xs={4}>
             <Controller
               control={control}
