@@ -25,6 +25,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Divider,
   Fade,
   IconButton,
   LinearProgress,
@@ -32,11 +33,13 @@ import {
   MenuList,
   Paper,
   Popper,
+  Stack,
   TablePaginationProps,
   TextField,
 } from "@mui/material";
 import MuiPagination from "@mui/material/Pagination";
 import { alpha, styled } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 
 const ODD_OPACITY = 0.2;
 
@@ -264,7 +267,7 @@ function NewViewListButton(props: {
   );
 }
 
-function CustomToolbar() {
+export function CustomToolbar() {
   const apiRef = useGridApiContext();
   const [state, dispatch] = React.useReducer(demoReducer, DEMO_INITIAL_STATE);
 
@@ -411,7 +414,7 @@ function CustomToolbar() {
   );
 }
 
-function Pagination({
+export function Pagination({
   page,
   onPageChange,
   className,
@@ -432,66 +435,86 @@ function Pagination({
   );
 }
 
-function CustomPagination(props: any) {
+export function CustomPagination(props: any) {
   return <GridPagination ActionsComponent={Pagination} {...props} />;
 }
 
 const multiFunTable = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const navigate = useNavigate();
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data, loading } = useDemoData({
     dataSet: "Employee",
     rowLength: 1000,
     // maxColumns: 16,
     visibleFields: [
-      'id',
-      'name',
-      'username',
-      'rating',
-      'email',
-      'phone',
-      'city',
-      'country',
-      'company',
-      'website',
-      'position',
-      'salary',
-      'isAdmin',
-      'updated on',
-      'created on',
+      "id",
+      "name",
+      "username",
+      "rating",
+      "email",
+      "phone",
+      "city",
+      "country",
+      "company",
+      "website",
+      "position",
+      "salary",
+      "isAdmin",
+      "updated on",
+      "created on",
     ],
     treeData: { maxDepth: 2, groupingField: "name", averageChildren: 3 },
   });
 
   const TableStyles = {
     height: "50rem",
-    margin: "3.1rem",
+    margin: "2rem",
     p: 2,
   };
+
+  const handleCollapsableGrid = () => {
+    navigate("/collapsablegrid");
+  };
+
   return (
-    <StripedDataGrid
-      sx={TableStyles}
-      pagination={true}
-      autoPageSize
-      slots={{
-        toolbar: CustomToolbar,
-        pagination: CustomPagination,
-        loadingOverlay: LinearProgress,
-      }}
-      slotProps={{
-        toolbar: {
-          printOptions: {
-            hideFooter: true,
-            hideToolbar: true,
-          },
-        },
-      }}
-      loading={loading}
-      {...data}
-      getRowClassName={(params: any) =>
-        params.indexRelativeToCurrentPage % 2 === 0 ? "even" : "odd"
-      }
-      pageSizeOptions={[5, 10]}
-    />
+    <Stack divider={<Divider />}>
+      <div>
+        <Button
+          variant="outlined"
+          sx={{ float: "right", m: "2rem" }}
+          onClick={handleCollapsableGrid}
+        >
+          Collapsable Grid
+        </Button>
+      </div>
+      <div>
+        <StripedDataGrid
+          sx={TableStyles}
+          pagination={true}
+          autoPageSize
+          slots={{
+            toolbar: CustomToolbar,
+            pagination: CustomPagination,
+            loadingOverlay: LinearProgress,
+          }}
+          slotProps={{
+            toolbar: {
+              printOptions: {
+                hideFooter: true,
+                hideToolbar: true,
+              },
+            },
+          }}
+          loading={loading}
+          {...data}
+          getRowClassName={(params: any) =>
+            params.indexRelativeToCurrentPage % 2 === 0 ? "even" : "odd"
+          }
+          pageSizeOptions={[5, 10]}
+        />
+      </div>
+    </Stack>
   );
 };
 
