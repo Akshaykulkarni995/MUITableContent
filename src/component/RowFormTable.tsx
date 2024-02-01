@@ -10,20 +10,19 @@ import {
   GridRowModelUpdate,
   useGridApiContext,
   GridRowParams,
+  DataGridPro,
 } from "@mui/x-data-grid-pro";
 import { randomEmail } from "@mui/x-data-grid-generator";
 import { DataGridPremium } from "@mui/x-data-grid-premium";
-import {
-  Grid,
-  LinearProgress,
-} from "@mui/material";
+import { Grid, LinearProgress, Typography } from "@mui/material";
 import {
   CustomToolbar,
   CustomPagination,
 } from "./MultiFunctionTable/multiFunTable";
+import { grey } from "@mui/material/colors";
 
 function DetailPanelContent({ row }: { row: Patient }) {
-//   const [open, setOpen] = React.useState(false);
+  //   const [open, setOpen] = React.useState(false);
   const apiRef = useGridApiContext();
   const {
     control,
@@ -39,23 +38,23 @@ function DetailPanelContent({ row }: { row: Patient }) {
     apiRef.current.toggleDetailPanel(row.id);
   };
 
-//   const handleClickOpen = () => {
-//     setOpen(true);
-//   };
+  //   const handleClickOpen = () => {
+  //     setOpen(true);
+  //   };
 
-//   const handleClose = () => {
-//     setOpen(false);
-//   };
+  //   const handleClose = () => {
+  //     setOpen(false);
+  //   };
 
   return (
     <Stack
-      sx={{ py: 2, height: "100%", boxSizing: "border-box" }}
+      sx={{ py: 2, boxSizing: "border-box" }}
       direction="column"
       component="form"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Paper sx={{ background: "#ffff8d", m: "auto", width: "90%", p: 2 }}>
-        <Grid container spacing={2} sx={{p:1}}>
+      <Paper sx={{ background: grey[100], m: "1rem", p: 2 }}>
+        <Grid container spacing={2} sx={{ p: 1 }}>
           <Grid item xs={4}>
             <Controller
               control={control}
@@ -126,40 +125,81 @@ function DetailPanelContent({ row }: { row: Patient }) {
               size="small"
             />
           </Grid>
+          <Button
+            sx={{ float: "right", m: "1rem" }}
+            type="submit"
+            variant="contained"
+            size="small"
+            disabled={!isValid}
+          >
+            Save
+          </Button>
         </Grid>
-        <Button
-          sx={{ float: "right", m: "1rem" }}
-          type="submit"
-          variant="contained"
-          size="small" disabled={!isValid}
-        >
-          Save
-        </Button>
-        {/* <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">
-          Confirmation
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-             Are you sure ? you want to save  this information.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}   disabled={!isValid} autoFocus>
-              Agree
-            </Button>
-            <Button onClick={handleClose}>Cancel</Button>
-          </DialogActions>
-        </Dialog> */}
+        <Typography variant="h5" color={"black"} sx={{m:1}}>Patient data table</Typography>
+        <div>
+          <DataGridPro
+            sx={{ height: "20rem" }}
+            density="compact"
+            columns={childColumns}
+            rows={childRows}
+            hideFooter
+          />
+        </div>
       </Paper>
     </Stack>
   );
 }
+
+const childColumns: GridColDef[] = [
+  { field: "id", headerName: "Patient ID" },
+  { field: "patient", headerName: "Patient First Name", width: 200 },
+  { field: "plName", headerName: "Patient Last Name", width: 200 },
+  { field: "email", headerName: "Patient Email", width: 200 },
+  { field: "ssn", headerName: "SSN", width: 200 },
+  { field: "mrn", headerName: "MRN", width: 200 },
+];
+
+const childRows = [
+  {
+    id: 1,
+    patient: "Matheus",
+    plName: "Souza",
+    email: randomEmail(),
+    ssn: "123456789",
+    mrn: "1234567890123456789",
+  },
+  {
+    id: 2,
+    patient: "Olivier",
+    plName: "Leblanc",
+    email: randomEmail(),
+    // No SSN and MRN for this row.
+  },
+  {
+    id: 3,
+    patient: "Flavien",
+    plName: "Dupont",
+    email: randomEmail(),
+    ssn: "987654321",
+    mrn: "987654321098765",
+  },
+  {
+    id: 4,
+    patient: "Danail",
+    plName: "Ivanov",
+    email: randomEmail(),
+    ssn: "987654321",
+    mrn: "987654321098765",
+  },
+  {
+    id: 5,
+    patient: "Alexandre",
+    plName: "Brunet",
+    email: randomEmail(),
+    ssn: "987654321",
+    mrn: "987654321098765",
+  },
+];
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "Patient ID" },
@@ -212,7 +252,7 @@ export default function RowFormTable() {
   const getDetailPanelHeight = React.useCallback(() => 240, []);
 
   return (
-    <Box sx={{ height: 500, m: "2rem" }}>
+    <Box sx={{ height: 800, m: "2rem" }}>
       <DataGridPremium
         columns={columns}
         slots={{

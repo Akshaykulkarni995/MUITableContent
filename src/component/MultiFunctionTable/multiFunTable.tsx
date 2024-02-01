@@ -56,7 +56,7 @@ interface DemoState {
   menuAnchorEl: HTMLElement | null;
 }
 
-const StripedDataGrid = styled(DataGridPremium)(({ theme }) => ({
+export const StripedDataGrid = styled(DataGridPremium)(({ theme }) => ({
   [`& .${gridClasses.row}.even`]: {
     backgroundColor: theme.palette.grey[200],
     "&:hover, &.Mui-hovered": {
