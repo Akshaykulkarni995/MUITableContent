@@ -131,7 +131,7 @@ function DetailPanelContent({ row }: { row: Patient }) {
           sx={{ float: "right", m: "1rem" }}
           type="submit"
           variant="contained"
-          size="small"
+          size="small" disabled={!isValid}
         >
           Save
         </Button>
